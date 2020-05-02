@@ -166,7 +166,7 @@ $ node
 > process.env
 ```
 
-2. 環境変数を設定
+2. 環境変数を設定（永続化はされないと思われるので...）
 ```
 > process.env.KEY = '/etc/ssl/hoge/private/server.key'
 '/etc/ssl/hoge/private/server.key'
@@ -174,6 +174,32 @@ $ node
 > process.env.CERT = '/etc/ssl/hoge/server.crt'
 '/etc/ssl/hoge/server.crt'
 ```
+
+### dotenvでprocess.envを変更
+
+1. dotenvをインストール
+
+```
+$ sudo npm install --save dotenv
+```
+
+2. プロジェクト直下に.envファイルを作成
+
+```
+KEY = '/etc/ssl/myCA/private/server.key'
+CERT = '/etc/ssl/myCA/server.crt'
+```
+
+3. index.jsに環境変数を読み込むために下記を記述
+
+```
+require('dotenv').config()
+```
+
+
+### 秘密鍵のpermissionの問題
+
+対応中
 
 ### Amazon Certificate Manager(ACM)で証明書を発行し、インスタンスをロードバランサーに登録
 
