@@ -1,0 +1,26 @@
+{
+  "name": "ukiuni screen share extension",
+  "short_name": "sse",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Screen Share extension for ukiuni.com basis on SkyWay-ScreenShare",
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "permissions": [
+    "desktopCapture",
+    "tabs"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [{
+    "matches": ["https://*/*", "http://*/*"], // change origin name as your own.
+    "js": ["content.js"],
+    "all_frames": true,
+    "run_at": "document_end"
+  }]
+}

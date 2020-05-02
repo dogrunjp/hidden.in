@@ -170,12 +170,14 @@ function prepareNewConnection(remoteId) {
             document.getElementById("remoteArea").appendChild(remoteVideo);
             toFullScreenable(remoteVideo);
         }
-        remoteVideo.src = URL.createObjectURL(event.stream);
+        //remoteVideo.src = URL.createObjectURL(event.stream);
+        remoteVideo.srcObject = event.stream
         remoteVideo.load();
         remoteVideo.play();
     }
     function onRemoteStreamRemoved(event) {
-        remoteVideo.src = "";
+        //remoteVideo.src = "";
+        remoteVideo.srcObject = "";
         remoteVideo.parentNode.removeChild(remoteVideo);
     }
     peer.removeElement = function () {
@@ -191,7 +193,8 @@ function prepareStream(stream) {
     }
     stopLocalStream();
     localStream = stream;
-    localVideo.src = URL.createObjectURL(stream);
+    //localVideo.src = URL.createObjectURL(stream);
+    localVideo.srcObject = stream;
     localVideo.play();
     if (!joinedToRoom) {
         joinToRoom();
@@ -296,13 +299,13 @@ function appendsSound() {
 
 function stopLocalStream() {
     if (localStream) {
-        localVideo.src = "";
+        localVideo.srcObject = "";
     }
 }
 
 function stop() {
     if (localStream) {
-        localVideo.src = "";
+        localVideo.srcObject = "";
     }
     for (var key in peerConnections) {
         peerConnections[key].removeElement();
