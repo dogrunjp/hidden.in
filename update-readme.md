@@ -92,8 +92,8 @@ ${HTTP} If you specify true, application boot with http.
 ```
 [ CA_default ]
 dir = /etc/ssl/hoge 
-certificate = $dir/ca.crt # 次項で作成
-private_key = $dir/ca.key # 次項で作成
+certificate = $dir/hoge.crt # 次項で作成
+private_key = $dir/hoge.key # 次項で作成
 x509_extensions = usr_cert # 初期設定ママ
 
 [ usr_cert ]
@@ -129,13 +129,13 @@ chmod 700 private
 2. オレオレ証明局の秘密鍵と証明書ファイルを作成
 
 ```
-$ sudo openssl req -new -x509 -sha256 -days 36500 -newkey rsa:4096 -out ca.crt -keyout private/ca.key
+$ sudo openssl req -new -x509 -sha256 -days 36500 -newkey rsa:4096 -out hoge.crt -keyout private/hoge.key
 ```
 
 3. 秘密鍵のパスフレーズ解除
 
 ```
-$ sudo openssl rsa -in private/ca.key -out private/ca.key
+$ sudo openssl rsa -in private/hoge.key -out private/hoge.key
 ```
 
 4. サーバ証明書の秘密鍵と署名要求ファイルを作成
@@ -153,7 +153,7 @@ $ openssl rsa -in private/server.key -out private/server.key
 6. オレオレ認証局署名済みのサーバ証明書発行
 
 ```
-$ sudo openssl ca -days 36500 -keyfile private/ca.key -cert ca.crt -in server.csr -out server.crt
+$ sudo openssl ca -days 36500 -keyfile private/ca.key -cert hoge.crt -in server.csr -out server.crt
 ```
 
 ### 環境変数の設定
@@ -186,8 +186,8 @@ $ sudo npm install --save dotenv
 2. プロジェクト直下に.envファイルを作成
 
 ```
-KEY = '/etc/ssl/myCA/private/server.key'
-CERT = '/etc/ssl/myCA/server.crt'
+KEY = '/etc/ssl/hoge/private/server.key'
+CERT = '/etc/ssl/hoge/server.crt'
 ```
 
 3. index.jsに環境変数を読み込むために下記を記述
