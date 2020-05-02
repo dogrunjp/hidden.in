@@ -8,6 +8,14 @@ var options = {
   cert: fs.readFileSync(process.env.CERT || './cert/cert.pem')
 };
 var server
+
+// logger
+var logger = require('morgan');
+app.use(logger("common",{
+  stream: fs.createWriteStream('./log/access.log', {flags: 'a'})
+}));
+
+
 if ("true" == process.env.HTTP) {
   console.log("mode http")
   server = require('http').createServer(app);
