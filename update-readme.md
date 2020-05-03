@@ -57,7 +57,16 @@ localVideo.srcObject = stream;
 ### 起動
 
 ```
-$ npm start
+$ npm install && npm start
+```
+
+※この後説明しますが、いくつか機能を追加したため、
+このままnpm startしたい場合、以下を先に実行しておいてください
+
+```
+$ npm install morgan --save
+$ npm install dotenv --save 
+$ mkdir log
 ```
 
 ### dockerで起動する場合
@@ -166,7 +175,7 @@ $ node
 > process.env
 ```
 
-2. 環境変数を設定（永続化はされないと思われるので...）
+2. 環境変数を設定（永続化はされないと思われるので、dotenvを利用する...）
 ```
 > process.env.KEY = '/etc/ssl/hoge/private/server.key'
 '/etc/ssl/hoge/private/server.key'
