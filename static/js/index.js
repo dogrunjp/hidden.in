@@ -176,8 +176,7 @@ function prepareNewConnection(remoteId) {
         remoteVideo.play();
     }
     function onRemoteStreamRemoved(event) {
-        //remoteVideo.src = "";
-        remoteVideo.srcObject = "";
+        remoteVideo.src = "";
         remoteVideo.parentNode.removeChild(remoteVideo);
     }
     peer.removeElement = function () {
@@ -299,13 +298,13 @@ function appendsSound() {
 
 function stopLocalStream() {
     if (localStream) {
-        localVideo.srcObject = "";
+        localVideo.src = "";
     }
 }
 
 function stop() {
     if (localStream) {
-        localVideo.srcObject = "";
+        localVideo.src = "";
     }
     for (var key in peerConnections) {
         peerConnections[key].removeElement();
