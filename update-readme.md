@@ -60,15 +60,6 @@ localVideo.srcObject = stream;
 $ npm install && npm start
 ```
 
-※この後説明しますが、いくつか機能を追加したため、
-このままnpm startしたい場合、以下を先に実行しておいてください
-
-```
-$ npm install morgan --save
-$ npm install dotenv --save 
-$ mkdir log
-```
-
 ### dockerで起動する場合
 
 ```
